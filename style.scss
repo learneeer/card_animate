@@ -1,0 +1,40 @@
+.view_card {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 10px;
+    box-sizing: border-box;
+    border: 2px solid black;
+    cursor: pointer;
+    transition: .9s transform linear;
+    backface-visibility: hidden;
+}
+
+body {
+    background-color: black;
+    .card {
+        width: 180px;
+        height: 240px;
+        border-radius: 6px;
+        background: transparent;
+        position: relative;
+        perspective: 300px;
+        &::after {
+            @extend .view_card;
+            background-image: repeating-linear-gradient(-45deg, rgb(209, 46, 46), rgb(209, 46, 46) 3px, rgb(189, 108, 108), rgb(189, 108, 108) 10px);
+        }
+        &:hover::after {
+            transform: rotateY(180deg);
+        }
+        &::before {
+            @extend .view_card;
+            background: url('card.jpg');
+            background-size: cover;
+            transform: rotateY(180deg);
+        }
+        &:hover::before {
+            transform: rotateY(360deg);
+        }
+    }
+}
